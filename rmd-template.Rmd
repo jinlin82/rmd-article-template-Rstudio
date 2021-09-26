@@ -1,0 +1,157 @@
+---
+title: "分析报告"
+author: "张三"
+date: "2020年3月"
+institute: 中南财经政法大学统计与数学学院
+csl: ./style/chinese-gb7714-2015-numeric.csl
+css: ./style/markdown.css
+bibliography: [./Bibfile.bib]
+classoption: "aspectratio=1610"
+output:
+  beamer_presentation:
+    keep_tex: true
+    latex_engine: xelatex
+    toc: true
+    pandoc_args:
+    - --listing
+    - --filter
+    - pandoc-crossref
+    citation_package: natbib
+    slide_level: 3
+    template: ./style/beamer-template.tex
+    includes:
+      #in_header: ./beamer-header.tex
+  bookdown::html_document2:
+    fig_caption: true
+    highlight: haddock
+    keep_md: true
+    md_extensions: +east_asian_line_breaks
+    number_sections: true
+    pandoc_args:
+    - --filter
+    - pandoc-crossref
+    - -M
+    - eqnPrefix=
+    global_numbering: true
+    toc: true
+  bookdown::pdf_document2:
+    keep_tex: true
+    latex_engine: xelatex
+    md_extensions: +east_asian_line_breaks
+    pandoc_args:
+    - --listing
+    - --filter
+    - pandoc-crossref
+    template: ./style/default-1.17.0.2.tex
+    toc: false
+    citation_package: natbib
+  bookdown::word_document2:
+    fig_caption: true
+    md_extensions: +east_asian_line_breaks
+    number_sections: false  
+    pandoc_args:
+    - --filter
+    - pandoc-crossref
+    reference_docx: ./style/word-styles-02.docx
+    global_numbering: true
+  powerpoint_presentation:
+    slide_level: 3
+    fig_caption: true
+    md_extensions: +east_asian_line_breaks
+    pandoc_args:
+    - --filter
+    - pandoc-crossref
+    reference_doc: ./style/pptx-template-1.pptx
+---
+
+```{r setup, echo=F, purl=F}
+knitr::opts_knit$set(root.dir = getwd())
+knitr::opts_chunk$set(echo = FALSE, results = 'hide')
+knitr::opts_chunk$set(warning = FALSE, message=FALSE)
+knitr::opts_chunk$set(fig.align="center"
+                      ## ,out.width="0.9\\textwidth" # latex
+                      ,out.width="70%" # for both latex and html
+                      ,fig.width=5, fig.height=3
+                      )
+```
+
+```{r prepare, echo=F, purl=F, results = 'hide'}
+rm(list=ls())
+options(digits=4)
+options(scipen=100)
+graphics.off()
+Sys.setlocale("LC_ALL", "Chinese")
+library(reticulate)
+```
+
+**TODO**
+
+-   [x] 表格如何输出
+-   [ ] Bib文件如何整理
+
+# 简介
+
+### R 代码
+
+R代码
+
+```{r, results='markup'}
+2+3
+```
+
+$$\bar x = \sum_{i=1}^n x_i +\bar y$${\#eq:rt0}
+
+### Python 代码
+
+python代码[@Xie2019]
+
+```{python, results='markup'}
+3+5
+```
+
+python图形
+
+```{python, fig.cap="统计图", fig.pos='H'}
+import matplotlib.pyplot as plt
+plt.plot([0,1])
+```
+
+# 使用说明
+
+R输出表格[@蒋伟2019]
+
+```{r, results='markup'}
+knitr::kable(head(trees), caption = "数据", booktabs=T)
+```
+
+------------------------------------------------------------------------
+
+行内公式 $\alpha+\hat{\beta}$ 。
+
+行间公式
+
+$$\bar x = \sum_{i=1}^n x_i +\bar y$${\#eq:rt}
+
+$$X \sim  N(0,1)$$
+
+## 文件结构
+
+## 使用方法
+
+# 结论
+
+### Python 表格输出
+
+python 表格输出 ^[脚注内容]
+
+
+```{python, results='markup'}
+import pandas as pd
+dat=pd.DataFrame([['中文',2,3],['英文',4,6]])
+```
+
+```{r eval=T, results='markup'}
+knitr::kable(py$dat, caption = "python 表格", booktabs=T)
+```
+
+# 参考文献
