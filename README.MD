@@ -15,7 +15,7 @@
 
 # Rmarkdown article template for Rstudio
 
-**本项目是Rmarkdown article template适用于Rstudio的修改版**
+**本项目是 [Rmarkdown article template](https://gitee.com/Jin-Stat-Group/rmd-article-template) 项目适用于Rstudio的修改版**
 
 ## 使用方法
 
@@ -66,6 +66,7 @@
 
 ```diff
 -----------------使用以下解决方法，必须先阅读上面的注意(必读)--------------
+```
 
 **常见错误**
 1. 找不到 `knitr` 等包
