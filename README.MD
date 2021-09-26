@@ -1,23 +1,21 @@
 <!-- markdown-toc start - Don't edit this section. Run M-x markdown-toc-refresh-toc -->
 **Table of Contents**
 
-- [Rmarkdown article template](#rmarkdown-article-template)
+- [Rmarkdown article template for Rstudio](#rmarkdown-article-template-for-rstudio)
     - [使用方法](#使用方法)
         - [软件要求](#软件要求)
-        - [编译方法I：使用 Windows `发送到` 功能编译](#编译方法i：使用-windows-发送到-功能编译)
-        - [编译方法II：在 Vscode 中编译](#编译方法ii：在-vscode-中编译)
-        - [~~编译方法III：在 Rstudio 中编译（**有bug，不要使用**）~~](#编译方法iii：在-rstudio-中编译有bug不要使用)
+        - [在 Rstudio 中编译](#在-rstudio-中编译)
     - [编译常见错误的原因及解决方法](#编译常见错误的原因及解决方法)
-    - [RMD-ARTICLE-TEMPLATE介绍](#rmd-article-template介绍)
-        - [项目文件结构](#项目文件结构)
-    - [编辑修改方法](#编辑修改方法)
-        - [如何运行 Rmarkdown 中的 python 代码](#如何运行-rmarkdown-中的-python-代码)
-        - [rmd-template.rmd相关说明](#rmd-templatermd相关说明)
+- [RMD-ARTICLE-TEMPLATE介绍](#rmd-article-template介绍)
+    - [项目文件结构](#项目文件结构)
         - [rmd生成幻灯片beamer内容相关说明](#rmd生成幻灯片beamer内容相关说明)
+        - [footnote 相关问题](#footnote-相关问题)
 
 <!-- markdown-toc end -->
 
 # Rmarkdown article template for Rstudio
+
+**本项目是Rmarkdown article template适用于Rstudio的修改版**
 
 ## 使用方法
 
