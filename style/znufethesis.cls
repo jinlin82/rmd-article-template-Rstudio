@@ -103,10 +103,10 @@
 \RequirePackage{graphicx}                           % 支持图形
 \RequirePackage{url}                                    % 对网址进行处理
 \RequirePackage{color}                                % 颜色支持
-\RequirePackage{xcolor}
+%%\RequirePackage[monochrome]{xcolor}                  % 需要黑白打印，去掉 % 让这行生效
 \RequirePackage[ocgcolorlinks,colorlinks=true,citecolor=blue, linkcolor=blue]{hyperref}  %各种引用、书签生成
 
-% \hypersetup{hidelinks}    % 打印用黑色
+%\hypersetup{hidelinks}    % 打印用黑色，好像无效，使用上面语句
 \RequirePackage[noae]{Sweave}                  % Rnw 支持
 \setkeys{Gin}{width=0.8\textwidth}            % 更改Sweave默认图的宽度
 \RequirePackage{svn-multi}                    % 在文中加入svn属性信息
@@ -141,6 +141,8 @@
 \RequirePackage{slashbox}
 \RequirePackage[neverdecrease]{paralist}
 \RequirePackage{dcolumn}
+
+
 
 \RequirePackage{wrapfig}
 \RequirePackage{colortbl}
@@ -765,7 +767,13 @@
 \def\thu@tabular{\small\old@tabular}
 \DeclareCaptionLabelFormat{thu}{{\small\bfseries #1~\rmfamily #2}}
 \DeclareCaptionLabelSeparator{thu}{\hspace{1em}}
-\DeclareCaptionFont{thu}{\small\heiti}
+
+%% 图表标题字体
+\DeclareCaptionFont{thu}{\small\bfseries\songti}
+
+%% 表格字体大小设置
+\RequirePackage{etoolbox}
+\AtBeginEnvironment{longtabu}{\small}
 
 \renewcommand{\thefigure}{\arabic{chapter}-\arabic{figure}}
 \renewcommand{\thetable}{\thechapter-\arabic{table}}
@@ -988,20 +996,24 @@
 \renewcommand\lstlistlistingname{程序目录}
 \renewcommand\lstlistingname{程序}
 
+
 % 配置Lstlisting
 \definecolor{dkgreen}{rgb}{0,0.6,0}
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
+\setmonofont{Consolas} % listings 中支持 consolas 字体，必需配合上面\usepackage{fontenc} 中不出现[T1]才可以
+
+\makeatletter
 \lstset{
   language=R,
-  basicstyle=\footnotesize\ttfamily,
+  basicstyle=\lst@ifdisplaystyle\footnotesize\fi\ttfamily,
   commentstyle=\ttfamily\color{dkgreen}, % 评论颜色,打印时使用black
   numbers=left,
   numberstyle=\ttfamily\color{gray},  % the style that is used for the line-numbers,
   stepnumber=1,
   numbersep=5pt,
-  backgroundcolor=\color{white},
+%  backgroundcolor=\color{white},
   showspaces=false,
   showstringspaces=false,
   showtabs=false,
@@ -1011,12 +1023,22 @@
   breaklines=true,
   breakatwhitespace=false,
   caption=R 程序代码,
+  upquote=true, % get straight single quotes in listings
   escapeinside={},
-  keywordstyle=\color{blue}\ttfamily,
+  keywordstyle=\lst@ifdisplaystyle\color{blue}\fi\ttfamily,
   stringstyle=\color{purple}\ttfamily,
   morekeywords={},
   xleftmargin=2em, xrightmargin=0em, aboveskip=1em, belowskip=2em,
 }
+\makeatother
+
+%%% get straight double quotes in listings?
+\makeatletter
+\lst@CCPutMacro
+    \lst@ProcessOther {"22}{\lst@ifupquote \textquotedbl
+                                     \else \char34\relax \fi}
+    \@empty\z@\@empty
+\makeatother
 
 % 配置算法包
 \algsetup{indent=3em}
